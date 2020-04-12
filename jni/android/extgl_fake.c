@@ -31,11 +31,23 @@ static void* glregal;
 void glXStub(void *x, ...) {
     return;
 }
+/*
+ * avoke the context to startup Regal correctly
+ * need to define a function for startup
+ * yeah, the regal context is just a void.
+ * that's better for us.
+ */
+void (*avoke_context)(void* context);
 
 bool extgl_Open(JNIEnv *env) {
 	//gles1 = dlopen("libGLESv1_CM.so", RTLD_LAZY); // don't need dat crap, because Regal replaces *just* all of funs
 	glregal = dlopen("libRegal.so", RTLD_LAZY); 
-	
+	avoke_context = dlsym(glregal,"RegalMakeCurrent");
+	if(dlerror() != NULL) {
+		printfDebug("Could not locate symbol %s\nWhy did you replaced libRegal?", name);
+	}else{
+		avoke_context(eglGetCurrentContext());
+	}
 	// Why still gles1 != null here?
 	return /* gles1 != NULL && */ glregal != NULL;
 }
@@ -47,10 +59,9 @@ void *extgl_GetProcAddress(const char *name) {
 		//eat that, stupid minceraft.
 		
 		// guy wrong, just leave it return NULL!
-		
-		// return (void *)glXstub;
-		
+		// no, you're wrong! if user will replace regal with some other kind of wrapper without sourcemod, it will give some unexpected results
 		printfDebug("Could not locate symbol %s\n", name);
+		return (void *)glXstub;
 	}
 	return t;
 }
