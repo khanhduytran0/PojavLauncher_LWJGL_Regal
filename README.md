@@ -24,5 +24,6 @@ This LWJGL project can only build C++ code. Requires Android Studio and Android 
 
 Or if you have only Android NDK:
 - Open Terminal (Linux) or Command Prompt (Windows).
-- Execute `cd [directory locate to this project]`.
+- Execute `cd [ndk-root]`.
+- On Windows: `set NDK_PROJECT_PATH=C:\path\to\this\project\without\spaces` On Linux: `export NDK_PROJECT_PATH=/path/to/this/project/without/spaces`
 - Execute `ndk-build`.
