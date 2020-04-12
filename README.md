@@ -1,6 +1,6 @@
 A **port** from @artdeell's project to **attempt** get Regal working on PojavLauncher.
 This can be imported to Android Studio or AIDE.
-
+Attempt to link the library statically.
 ----
 
 LWJGL - Lightweight Java Game Library
@@ -24,5 +24,6 @@ This LWJGL project can only build C++ code. Requires Android Studio and Android 
 
 Or if you have only Android NDK:
 - Open Terminal (Linux) or Command Prompt (Windows).
-- Execute `cd [directory locate to this project]`.
+- Execute `cd [ndk-root]`.
+- On Windows: `set NDK_PROJECT_PATH=C:\path\to\this\project\without\spaces` On Linux: `export NDK_PROJECT_PATH=/path/to/this/project/without/spaces`
 - Execute `ndk-build`.
