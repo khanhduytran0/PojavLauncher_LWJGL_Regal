@@ -44,7 +44,7 @@ bool extgl_Open(JNIEnv *env) {
 	glregal = dlopen("libRegal.so", RTLD_LAZY); 
 	avoke_context = dlsym(glregal,"RegalMakeCurrent");
 	if(dlerror() != NULL) {
-		printfDebug("Could not locate symbol %s\nWhy did you replaced libRegal?", name);
+		printfDebug("Could not locate symbol RegalMakeCurrent in libRegal.so\n");
 	}else{
 		avoke_context(eglGetCurrentContext());
 	}
@@ -61,7 +61,7 @@ void *extgl_GetProcAddress(const char *name) {
 		// guy wrong, just leave it return NULL!
 		// no, you're wrong! if user will replace regal with some other kind of wrapper without sourcemod, it will give some unexpected results
 		printfDebug("Could not locate symbol %s\n", name);
-		return (void *)glXstub;
+		// return (void *)glXstub;
 	}
 	return t;
 }
