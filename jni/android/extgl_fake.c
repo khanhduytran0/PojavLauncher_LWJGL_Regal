@@ -33,7 +33,6 @@ void glXStub(void *x, ...) {
 }
 
 bool extgl_Open(JNIEnv *env) {
-	// Never gonna be use libGLES1 again!
 	//gles1 = dlopen("libGLESv1_CM.so", RTLD_LAZY); // don't need dat crap, because Regal replaces *just* all of funs
 	glregal = dlopen("libRegal.so", RTLD_LAZY); 
 	
