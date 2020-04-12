@@ -1,6 +1,6 @@
 A **port** from @artdeell's project to **attempt** get Regal working on PojavLauncher.
 This can be imported to Android Studio or AIDE.
-
+Attempt to link the library statically.
 ----
 
 LWJGL - Lightweight Java Game Library
