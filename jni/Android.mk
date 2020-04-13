@@ -16,6 +16,8 @@ cfiles += android/android_al.c \
 		  
 cfiles += common/common_tools.c \
  		  common/extal.c \
+ 		  common/opengl/org_lwjgl_opengl_CallbackUtil.c \
+ 		  common/opengl/org_lwjgl_opengl_GLContext.c \
  		  common/org_lwjgl_BufferUtils.c \
  		  common/org_lwjgl_openal_AL.c \
  		  common/org_lwjgl_openal_ALC10.c \
