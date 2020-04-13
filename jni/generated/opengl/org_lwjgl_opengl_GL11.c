@@ -844,7 +844,13 @@ JNIEXPORT void JNICALL Java_org_lwjgl_opengl_GL11_nglGetTexEnvfv(JNIEnv *env, jc
 JNIEXPORT jobject JNICALL Java_org_lwjgl_opengl_GL11_nglGetString(JNIEnv *env, jclass clazz, jint name, jlong function_pointer) {
 	glGetStringPROC glGetString = (glGetStringPROC)((intptr_t)function_pointer);
 	const GLubyte * __result = glGetString(name);
-	return NewStringNativeUnsigned(env, __result);
+	jobject resultGet = NewStringNativeUnsigned(env, __result);
+	
+	if (__result == NULL || resultGet == NULL) {
+		return (*env)->NewStringUTF(env, "NULL");
+	}
+	
+	return resultGet;
 }
 
 JNIEXPORT void JNICALL Java_org_lwjgl_opengl_GL11_nglGetPolygonStipple(JNIEnv *env, jclass clazz, jlong mask, jlong function_pointer) {
