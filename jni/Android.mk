@@ -12,6 +12,7 @@ include $(CLEAR_VARS)
 LOCAL_LDLIBS := -llog -lGLESv1_CM -lEGL
 LOCAL_MODULE := lwjgl
 
+# Link libRegal.so to liblwjgl.so
 LOCAL_SHARED_LIBRARIES := Regal
 
 # Add this for RegalMakeCurrent

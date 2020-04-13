@@ -45,7 +45,10 @@ void (*avoke_context)(void* context);
 
 bool extgl_Open(JNIEnv *env) {
 	// gles1 = dlopen("libGLESv1_CM.so", RTLD_LAZY); // don't need dat crap, because Regal replaces *just* all of funs
-	glregal = dlopen("libRegal.so", RTLD_LAZY);
+	// glregal = dlopen("libRegal.so", RTLD_LAZY);
+	
+	glregal = dlopen(NULL, RTLD_LAZY);
+	
 	/*
 	avoke_context = dlsym(glregal,"RegalMakeCurrent");
 	if (dlerror() != NULL) {
@@ -56,8 +59,6 @@ bool extgl_Open(JNIEnv *env) {
 	*/
 	
 	RegalMakeCurrent(eglGetCurrentContext());
-	
-	// Why still gles1 != null here?
 	
 	return glregal != NULL;
 	
@@ -72,6 +73,7 @@ void *extgl_GetProcAddress(const char *name) {
 		
 		// guy wrong, just leave it return NULL!
 		// no, you're wrong! if user will replace regal with some other kind of wrapper without sourcemod, it will give some unexpected results
+		// but this repo only for libRegal and nothing more!
 		printfDebug("Could not locate symbol %s\n", name);
 		// return (void *)glXstub;
 	}
