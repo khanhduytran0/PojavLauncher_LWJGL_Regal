@@ -1,3 +1,6 @@
+
+#include <GLES/gl.h>
+
 #if defined(_WIN32) || defined(_WIN64)
     #define int64_t __int64
     #define uint64_t unsigned __int64
@@ -39,8 +42,8 @@
 
 typedef char GLchar;            /* native character */
 
-typedef ptrdiff_t           GLintptr;
-typedef ptrdiff_t           GLsizeiptr;
+// typedef ptrdiff_t           GLintptr;
+// typedef ptrdiff_t           GLsizeiptr;
 typedef ptrdiff_t           GLintptrARB;
 typedef ptrdiff_t           GLsizeiptrARB;
 typedef char                GLcharARB;     /* native character */
