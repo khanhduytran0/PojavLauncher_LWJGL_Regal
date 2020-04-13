@@ -11,7 +11,7 @@ include $(PREBUILT_STATIC_LIBRARY)
 
 # LWJGL build
 include $(CLEAR_VARS)  
-LOCAL_LDLIBS := -llog -lGLESv1_CM -lEGL
+LOCAL_LDLIBS := -llog -lEGL
 LOCAL_MODULE := lwjgl
 
 # Link libRegal_static.a to liblwjgl.so
