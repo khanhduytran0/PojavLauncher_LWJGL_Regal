@@ -18,7 +18,7 @@ LOCAL_MODULE := lwjgl
 LOCAL_STATIC_LIBRARIES := Regal_static
 
 # Add this for RegalMakeCurrent
-# LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
+LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
 
 # cfiles := $(shell find -L $(LOCAL_PATH)/common -name "*.c" -printf "common/%P \n")
 
