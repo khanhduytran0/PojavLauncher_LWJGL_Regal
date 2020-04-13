@@ -2,21 +2,23 @@ LOCAL_PATH := $(call my-dir)
 
 # Regal prebuilt library
 include $(CLEAR_VARS)
-LOCAL_MODULE := Regal
-LOCAL_SRC_FILES := prebuilt/$(TARGET_ARCH_ABI)/lib$(LOCAL_MODULE).so
+LOCAL_MODULE := Regal_static
+# LOCAL_SRC_FILES := prebuilt/$(TARGET_ARCH_ABI)/lib$(LOCAL_MODULE).so
+LOCAL_SRC_FILES := prebuilt/armeabi-v7a/lib$(LOCAL_MODULE).a
+
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/regal_include
-include $(PREBUILT_SHARED_LIBRARY)
+include $(PREBUILT_STATIC_LIBRARY)
 
 # LWJGL build
 include $(CLEAR_VARS)  
 LOCAL_LDLIBS := -llog -lGLESv1_CM -lEGL
 LOCAL_MODULE := lwjgl
 
-# Link libRegal.so to liblwjgl.so
-LOCAL_SHARED_LIBRARIES := Regal
+# Link libRegal_static.a to liblwjgl.so
+LOCAL_STATIC_LIBRARIES := Regal_static
 
 # Add this for RegalMakeCurrent
-LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
+# LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
 
 # cfiles := $(shell find -L $(LOCAL_PATH)/common -name "*.c" -printf "common/%P \n")
 
@@ -26,7 +28,7 @@ LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
 
 # cfiles += $(shell find -L $(LOCAL_PATH)/android -name "*.c" -printf "android/%P \n")
 
-cfiles += android/android_al.c \
+cfiles := android/android_al.c \
 		  android/extgl_fake.c
 		  
 cfiles += common/common_tools.c \
