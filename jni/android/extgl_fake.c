@@ -7,8 +7,9 @@
 #include <EGL/egl.h>
 
 #include "extgl.h"
+#include "GL/Regal.h"
 
-//static void* gles1;
+// static void* gles1;
 static void* glregal;
 /*
 #define MAP(func_name, func) \
@@ -43,16 +44,24 @@ void glXStub(void *x, ...) {
 void (*avoke_context)(void* context);
 
 bool extgl_Open(JNIEnv *env) {
-	//gles1 = dlopen("libGLESv1_CM.so", RTLD_LAZY); // don't need dat crap, because Regal replaces *just* all of funs
-	glregal = dlopen("libRegal.so", RTLD_LAZY); 
+	// gles1 = dlopen("libGLESv1_CM.so", RTLD_LAZY); // don't need dat crap, because Regal replaces *just* all of funs
+	glregal = dlopen("libRegal.so", RTLD_LAZY);
+	/*
 	avoke_context = dlsym(glregal,"RegalMakeCurrent");
-	if(dlerror() != NULL) {
+	if (dlerror() != NULL) {
 		printfDebug("Could not locate symbol RegalMakeCurrent in libRegal.so\n");
-	}else{
+	} else{
 		avoke_context(eglGetCurrentContext());
 	}
+	*/
+	
+	RegalMakeCurrent(eglGetCurrentContext());
+	
 	// Why still gles1 != null here?
-	return /* gles1 != NULL && */ glregal != NULL;
+	
+	return glregal != NULL;
+	
+	// return true;
 }
 
 void *extgl_GetProcAddress(const char *name) {
@@ -70,6 +79,6 @@ void *extgl_GetProcAddress(const char *name) {
 }
 
 void extgl_Close(void) {
-	//dlclose(gles1); //don't need that shit lol
+	// dlclose(gles1); //don't need that shit lol
 	dlclose(glregal);
 }

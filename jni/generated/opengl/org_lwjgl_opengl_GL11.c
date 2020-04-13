@@ -3,6 +3,9 @@
 #include <jni.h>
 #include "extgl.h"
 
+// A little fake
+#include "fake/FakeGLGetString.h"
+
 typedef void (APIENTRY *glAccumPROC) (GLenum op, GLfloat value);
 typedef void (APIENTRY *glAlphaFuncPROC) (GLenum func, GLclampf ref);
 typedef void (APIENTRY *glClearColorPROC) (GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha);
@@ -848,6 +851,7 @@ JNIEXPORT jobject JNICALL Java_org_lwjgl_opengl_GL11_nglGetString(JNIEnv *env, j
 	
 	if (__result == NULL || resultGet == NULL) {
 		return (*env)->NewStringUTF(env, "NULL");
+		// return fakeGLGetString(env, name);
 	}
 	
 	return resultGet;

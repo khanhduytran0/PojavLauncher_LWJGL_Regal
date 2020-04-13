@@ -1,7 +1,21 @@
 LOCAL_PATH := $(call my-dir)
+
+# Regal prebuilt library
+include $(CLEAR_VARS)
+LOCAL_MODULE := Regal
+LOCAL_SRC_FILES := prebuilt/$(TARGET_ARCH_ABI)/lib$(LOCAL_MODULE).so
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/regal_include
+include $(PREBUILT_SHARED_LIBRARY)
+
+# LWJGL build
 include $(CLEAR_VARS)  
 LOCAL_LDLIBS := -llog -lGLESv1_CM -lEGL
-LOCAL_MODULE    := lwjgl
+LOCAL_MODULE := lwjgl
+
+LOCAL_SHARED_LIBRARIES := Regal
+
+# Add this for RegalMakeCurrent
+LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
 
 # cfiles := $(shell find -L $(LOCAL_PATH)/common -name "*.c" -printf "common/%P \n")
 
@@ -23,6 +37,8 @@ cfiles += common/common_tools.c \
  		  common/org_lwjgl_openal_ALC10.c \
  		  common/org_lwjgl_openal_ALC11.c \
 		  
+cfiles += fake/FakeGLGetString.c \
+
 cfiles += generated/openal/org_lwjgl_openal_AL10.c \
 		  generated/openal/org_lwjgl_openal_AL11.c \
 		  generated/openal/org_lwjgl_openal_EFX10.c \
@@ -210,6 +226,9 @@ generated/opengles/org_lwjgl_opengles_QCOMTiledRendering.c \
 		  
 LOCAL_SRC_FILES := $(cfiles)
 
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/common $(LOCAL_PATH)/common/opengl $(LOCAL_PATH)/android
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/common \
+					$(LOCAL_PATH)/common/opengl \
+					$(LOCAL_PATH)/android \
+					$(LOCAL_PATH)/regal_include \
 
 include $(BUILD_SHARED_LIBRARY)  
