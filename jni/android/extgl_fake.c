@@ -80,6 +80,19 @@ void *extgl_GetProcAddress(const char *name) {
 	return t;
 }
 
+/*
+void *extgl_GetProcAddress(const char *name) {
+	void *t = dlsym(glregal, name);
+	if (t == NULL) {
+		t = dlsym(gl4es, name);
+		if (t == NULL) {
+			printfDebug("Could not locate symbol %s\n", name);
+		}
+	}
+	return t;
+}
+*/
+
 void extgl_Close(void) {
 	// dlclose(gles1); //don't need that shit lol
 	dlclose(glregal);
