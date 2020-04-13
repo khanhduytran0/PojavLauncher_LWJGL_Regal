@@ -1,6 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)  
-LOCAL_LDLIBS := -llog -lGLESv1_CM
+LOCAL_LDLIBS := -llog -lGLESv1_CM -lEGL
 LOCAL_MODULE    := lwjgl
 
 # cfiles := $(shell find -L $(LOCAL_PATH)/common -name "*.c" -printf "common/%P \n")
@@ -23,19 +23,8 @@ cfiles += common/common_tools.c \
 		  
 cfiles += generated/openal/org_lwjgl_openal_AL10.c \
 		  generated/openal/org_lwjgl_openal_AL11.c \
-generated/openal/org_lwjgl_openal_EFX10.c \
-generated/opencl/org_lwjgl_opencl_APPLEContextLoggingFunctions.c \
-generated/opencl/org_lwjgl_opencl_APPLEGLSharing.c \
-generated/opencl/org_lwjgl_opencl_APPLESetMemObjectDestructor.c \
-generated/opencl/org_lwjgl_opencl_CL10.c \
-generated/opencl/org_lwjgl_opencl_CL10GL.c \
-generated/opencl/org_lwjgl_opencl_CL11.c \
-generated/opencl/org_lwjgl_opencl_EXTDeviceFission.c \
-generated/opencl/org_lwjgl_opencl_EXTMigrateMemobject.c \
-generated/opencl/org_lwjgl_opencl_KHRGLEvent.c \
-generated/opencl/org_lwjgl_opencl_KHRGLSharing.c \
-generated/opencl/org_lwjgl_opencl_KHRICD.c \
-generated/opengl/org_lwjgl_opengl_AMDDebugOutput.c \
+		  generated/openal/org_lwjgl_openal_EFX10.c \
+		  generated/opengl/org_lwjgl_opengl_AMDDebugOutput.c \
 generated/opengl/org_lwjgl_opengl_AMDDrawBuffersBlend.c \
 generated/opengl/org_lwjgl_opengl_AMDMultiDrawIndirect.c \
 generated/opengl/org_lwjgl_opengl_AMDNameGenDelete.c \
@@ -51,7 +40,6 @@ generated/opengl/org_lwjgl_opengl_APPLEVertexArrayObject.c \
 generated/opengl/org_lwjgl_opengl_APPLEVertexArrayRange.c \
 generated/opengl/org_lwjgl_opengl_APPLEVertexProgramEvaluators.c \
 generated/opengl/org_lwjgl_opengl_ARBBufferObject.c \
-generated/opengl/org_lwjgl_opengl_ARBCLEvent.c \
 generated/opengl/org_lwjgl_opengl_ARBColorBufferFloat.c \
 generated/opengl/org_lwjgl_opengl_ARBDebugOutput.c \
 generated/opengl/org_lwjgl_opengl_ARBDrawBuffers.c \
@@ -170,7 +158,7 @@ generated/opengl/org_lwjgl_opengl_NVVertexAttribInteger64bit.c \
 generated/opengl/org_lwjgl_opengl_NVVertexBufferUnifiedMemory.c \
 generated/opengl/org_lwjgl_opengl_NVVertexProgram.c \
 generated/opengl/org_lwjgl_opengl_NVVideoCapture.c \
-generated/opengles/org_lwjgl_opengles_AMDPerformanceMonitor.c \
+# generated/opengles/org_lwjgl_opengles_AMDPerformanceMonitor.c \
 generated/opengles/org_lwjgl_opengles_ANGLEFramebufferBlit.c \
 generated/opengles/org_lwjgl_opengles_ANGLEFramebufferMultisample.c \
 generated/opengles/org_lwjgl_opengles_APPLEFramebufferMultisample.c \
@@ -203,6 +191,20 @@ generated/opengles/org_lwjgl_opengles_QCOMDriverControl.c \
 generated/opengles/org_lwjgl_opengles_QCOMExtendedGet.c \
 generated/opengles/org_lwjgl_opengles_QCOMExtendedGet2.c \
 generated/opengles/org_lwjgl_opengles_QCOMTiledRendering.c \
+
+## Unnecessary to compile:
+# generated/opengl/org_lwjgl_opengl_ARBCLEvent.c \
+# generated/opencl/org_lwjgl_opencl_APPLEContextLoggingFunctions.c \
+# generated/opencl/org_lwjgl_opencl_APPLEGLSharing.c \
+# generated/opencl/org_lwjgl_opencl_APPLESetMemObjectDestructor.c \
+# generated/opencl/org_lwjgl_opencl_CL10.c \
+# generated/opencl/org_lwjgl_opencl_CL10GL.c \
+# generated/opencl/org_lwjgl_opencl_CL11.c \
+# generated/opencl/org_lwjgl_opencl_EXTDeviceFission.c \
+# generated/opencl/org_lwjgl_opencl_EXTMigrateMemobject.c \
+# generated/opencl/org_lwjgl_opencl_KHRGLEvent.c \
+# generated/opencl/org_lwjgl_opencl_KHRGLSharing.c \
+# generated/opencl/org_lwjgl_opencl_KHRICD.c \
 		  
 LOCAL_SRC_FILES := $(cfiles)
 

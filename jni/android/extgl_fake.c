@@ -3,6 +3,9 @@
 #include <dlfcn.h>
 #include <stdio.h>
 
+// Missing this
+#include <EGL/egl.h>
+
 #include "extgl.h"
 
 //static void* gles1;
