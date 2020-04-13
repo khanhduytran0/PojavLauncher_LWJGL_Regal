@@ -1129,11 +1129,11 @@ JNIEXPORT void JNICALL Java_org_lwjgl_opengl_GL11_nglPassThrough(JNIEnv *env, jc
 }
 
 JNIEXPORT void JNICALL Java_org_lwjgl_opengl_GL11_nglOrtho(JNIEnv *env, jclass clazz, jdouble left, jdouble right, jdouble bottom, jdouble top, jdouble zNear, jdouble zFar, jlong function_pointer) {
-	// glOrthoPROC glOrtho = (glOrthoPROC)((intptr_t)function_pointer);
-	// glOrtho(left, right, bottom, top, zNear, zFar);
+	glOrthoPROC glOrtho = (glOrthoPROC)((intptr_t)function_pointer);
+	glOrtho(left, right, bottom, top, zNear, zFar);
 	
 	// glOrthofPROC glOrthof = (glOrthofPROC)((intptr_t)function_pointer);
-	glOrthof((jfloat) left, (jfloat) right, (jfloat) bottom, (jfloat) top, (jfloat) zNear, (jfloat) zFar);
+	// glOrthof((jfloat) left, (jfloat) right, (jfloat) bottom, (jfloat) top, (jfloat) zNear, (jfloat) zFar);
 }
 
 JNIEXPORT void JNICALL Java_org_lwjgl_opengl_GL11_nglNormalPointer(JNIEnv *env, jclass clazz, jint type, jint stride, jlong pointer, jlong function_pointer) {
