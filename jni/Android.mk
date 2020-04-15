@@ -1,10 +1,14 @@
 LOCAL_PATH := $(call my-dir)
 
+global_cflags := -DANDROID=1
+
 # Regal prebuilt library
 include $(CLEAR_VARS)
 LOCAL_MODULE := Regal_static
-# LOCAL_SRC_FILES := prebuilt/$(TARGET_ARCH_ABI)/lib$(LOCAL_MODULE).so
+
 LOCAL_SRC_FILES := prebuilt/armeabi-v7a/lib$(LOCAL_MODULE).a
+# Uncomment below and comment above if have x86 libRegal_static.a
+# LOCAL_SRC_FILES := prebuilt/$(TARGET_ARCH_ABI)/lib$(LOCAL_MODULE).a
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/regal_include
 include $(PREBUILT_STATIC_LIBRARY)
@@ -15,7 +19,9 @@ LOCAL_LDLIBS := -llog -lEGL
 LOCAL_MODULE := lwjgl
 
 # Link libRegal_static.a to liblwjgl.so
-LOCAL_STATIC_LIBRARIES := Regal_static
+LOCAL_WHOLE_STATIC_LIBRARIES := Regal_static zlib snappy
+LOCAL_CFLAGS    := $(global_cflags)
+LOCAL_ARM_MODE  := arm
 
 # Add this for RegalMakeCurrent
 LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
